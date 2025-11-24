@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Web Dev Lab Assignment 4 - Prompt Quizzer</title>
+</head>
+<body>
+    <h1>Prompt Quizzer – A Quiz Game</h1>
+    <p>
+        This page is for Web Dev Lab Assignment 4.<br>
+        Click the button below to start the quiz, or open the browser console
+        and type <code>runQuiz()</code>.
+    </p>
+
+    <button onclick="runQuiz()">Start Quiz</button>
+
+    <script>
+        // Web Dev I - Lab Assignment 4
+        // Prompt Quizzer - A Quiz Game
+        // The quiz uses prompt() and alert() and runs completely in the browser.
+
+        // 1) Quiz questions array
+        // Each object has a question and the correct answer.
+        const quizQuestions = [
+            {
+                question: "What is the capital of India?",
+                answer: "delhi"
+            },
+            {
+                question: "Which language is used to style web pages?",
+                answer: "css"
+            },
+            {
+                question: "Which tag is used to create a link in HTML?",
+                answer: "a"
+            },
+            {
+                question: "What does JS stand for in web development?",
+                answer: "javascript"
+            },
+            {
+                question: "Which keyword is used to declare a constant in JavaScript?",
+                answer: "const"
+            }
+        ];
+
+        // 2) Function to run the quiz
+        function runQuiz() {
+            // 3) score variable to count correct answers
+            let score = 0;
+
+            // 4) loop through all questions
+            for (let i = 0; i < quizQuestions.length; i++) {
+                const currentQ = quizQuestions[i];
+
+                // 5) ask the user for answer using prompt()
+                let userAnswer = prompt("Q" + (i + 1) + ": " + currentQ.question);
+
+                // if user pressed Cancel, skip this question
+                if (userAnswer === null) {
+                    alert("You skipped this question.");
+                    continue;
+                }
+
+                // 6) normalize input: lowercase + remove extra spaces
+                userAnswer = userAnswer.toLowerCase().trim();
+
+                // also normalize correct answer
+                const correct = currentQ.answer.toLowerCase().trim();
+
+                // 7) compare answers using if-else
+                if (userAnswer === correct) {
+                    score = score + 1;
+                    // 8) immediate feedback for correct answer
+                    alert("Correct! ✅\nYour current score is: " + score);
+                } else {
+                    // feedback for wrong answer with correct one
+                    alert(
+                        "Wrong ❌\n" +
+                        "Your answer: " + userAnswer + "\n" +
+                        "Correct answer: " + correct + "\n" +
+                        "Current score: " + score
+                    );
+                }
+            }
+
+            // 9) final score alert
+            alert(
+                "Quiz finished!\n" +
+                "You scored " + score + " out of " + quizQuestions.length + "."
+            );
+        }
+
+        // You can also start the quiz from the console by calling: runQuiz();
+    </script>
+</body>
+</html>
